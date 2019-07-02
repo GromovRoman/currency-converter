@@ -1,11 +1,19 @@
 import React from 'react';
 import './App.css';
+import getJsonData from './getJsonData';
+import Item from './item/';
 
-function App() {
-  return (
-    <div className="App">
-    </div>
-  );
+export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  render() {
+    return (
+      <div className='App'>
+        <Item />
+      </div>
+    );
+  }
 }
-
-export default App;
