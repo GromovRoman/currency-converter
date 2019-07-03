@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import getJsonData from './getJsonData';
 import Item from './item/';
 
 export default class App extends React.Component {
