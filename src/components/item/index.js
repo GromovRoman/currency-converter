@@ -8,6 +8,8 @@ export default class Item extends React.Component {
         this.state = {
             item: null,
             curency: null,
+            currentPrice: null,
+            currentCurency: null,
         };
     }
     componentDidMount() {
@@ -22,8 +24,17 @@ export default class Item extends React.Component {
         .then(itemData => {
             this.setState({
                 item: itemData,
+                currentPrice: itemData.price,
+                currentCurency: itemData.curency
             });
         });    
+    }
+    changeCurency = (event) => {
+        let recalculateСurrentPrices = this.state.item.price / this.state.curency[event.target.value].Value
+        this.setState({
+            currentPrice: recalculateСurrentPrices,
+            currentCurency: event.target.value,
+        });
     }
     render(){
         let option = [];
@@ -61,10 +72,10 @@ export default class Item extends React.Component {
                         <li className='item__row'>  
                             <dl className='item__fields'>
                                 <dt className='item__key'>Цена</dt>
-                                <dd className='item__data'>{this.state.item.price} {this.state.item.curency}</dd>
+                                <dd className='item__data'>{this.state.currentPrice} {this.state.currentCurency}</dd>
                             </dl>
                             { this.state.curency !== null ? (
-                                <select name="curency">
+                                <select onChange={this.changeCurency} name="curency">
                                     {option.map(item => item)} 
                                 </select>
                                 ) : (null)
