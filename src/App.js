@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Item from './item/';
+import Item from './components/item/';
 
 export default class App extends React.Component {
   constructor(props) {
