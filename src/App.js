@@ -51,7 +51,7 @@ export default class App extends React.Component {
         <Widget>
           <Field name="Название" value={this.state.item.name} />
           <Field name="Описание" value={this.state.item.description} />
-          <Field name="Особенности" value={this.state.item.name} />
+          <Field name="Особенности" value={this.state.item.features} />
           <Field
             name="Валюта"
             value={[parseFloat(this.state.currentPrice).toFixed(2), ' ', this.state.currentCurrency]}
