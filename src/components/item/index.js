@@ -37,16 +37,18 @@ export default class Item extends React.Component {
         });
     }
     render(){
-        let option = [];
+        let options = [];
 
         if(this.state.curency !== null) {
-            for(var key in this.state.curency) {
-                option.push(
+            let curencyKeys = Object.keys(this.state.curency);
+            
+            curencyKeys.forEach(key => {
+                options.push(
                     <option value={this.state.curency[key].CharCode} key={key}>
                         {this.state.curency[key].Name}
                     </option>
                 );
-            }
+            });
         }
         
         if(this.state.item !== null) {
@@ -76,7 +78,7 @@ export default class Item extends React.Component {
                             </dl>
                             { this.state.curency !== null ? (
                                 <select onChange={this.changeCurency} name="curency">
-                                    {option.map(item => item)} 
+                                    {options.map(item => item)} 
                                 </select>
                                 ) : (null)
                             }
