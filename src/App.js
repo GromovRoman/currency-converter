@@ -3,14 +3,14 @@ import './App.css';
 import Widget from './components/Widget';
 import Field from './components/Field';
 import Select from './components/Select';
-import { getItemData, getCurrencyData } from '../../getJsonData';
+import { getItemData, getCurrencyData } from './getJsonData';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       item: null,
-      currency: null,
+      currencies: null,
       currentPrice: null,
       currentCurrency: null,
     };
@@ -23,32 +23,36 @@ export default class App extends React.Component {
     .then(([itemData, currencyData]) => {
         this.setState({
             item: itemData,
-            currency: currencyData,
+            currencies: currencyData,
             currentPrice: itemData.price,
-            currentCurrency: itemData.currency
+            currentCurrency: itemData.curency
         });
     });   
   }
-  changeCurrency = (event) => {
-      let recalculateСurrentPrices = this.state.item.price / this.state.currency[event.target.value].Value
-      this.setState({
-          currentPrice: recalculateСurrentPrices,
-          currentCurrency: event.target.value,
-      });
+  onChangeCurrency = (event) => {
+    let currentCharCode = event.target.value,
+        newСurrentPrices = this.state.item.price / this.state.currencies[event.target.value].Value;
+
+    this.setState({
+        currentPrice: newСurrentPrices,
+        currentCurrency: currentCharCode,
+    });
   }
   render() {
+    if(this.state.item === null)  return null
+
     return (
       <div className='App'>
         <Widget>
-                <Field name="Название" value={this.state.name} />
-                <Field name="Описание" value={this.state.description} />
-                <Field name="Особенности" value={this.state.name} />
-                <Field
-                    name="Валюта"
-                    value={(
-                        <Select values={currencyOptions} onChange={this.handleCurrencyChange} />
-                    )}
-                />
+          <Field name="Название" value={this.state.item.name} />
+          <Field name="Описание" value={this.state.item.description} />
+          <Field name="Особенности" value={this.state.item.name} />
+          <Field
+            name="Валюта"
+            value={[this.state.currentPrice, ' ', this.state.currentCurrency]}
+          >
+            <Select currencies={this.state.currencies} onChange={this.onChangeCurrency} />
+          </Field>
         </Widget>
       </div>
     );
