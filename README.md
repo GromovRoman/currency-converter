@@ -12,8 +12,8 @@
 
 - React
 - create-react-app
-- [ссылка на объект](https://api.myjson.com/bins/hxkan)
-- [ссылка на страницу калькулятора](https://9wwxs.codesandbox.io/)
+- [JSON](https://api.myjson.com/bins/hxkan)
+- [Конвертер](https://9wwxs.codesandbox.io/)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
