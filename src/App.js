@@ -21,12 +21,18 @@ export default class App extends React.Component {
         getCurrencyData(),
     ])
     .then(([itemData, currencyData]) => {
-        this.setState({
-            item: itemData,
-            currencies: currencyData,
-            currentPrice: itemData.price,
-            currentCurrency: itemData.curency
-        });
+      currencyData['RUB'] = {
+                              CharCode: 'RUB',
+                              Name: 'Российский рубль', 
+                              Value: 1
+                            };
+
+      this.setState({
+        item: itemData,
+        currencies: currencyData,
+        currentPrice: itemData.price,
+        currentCurrency: itemData.curency
+      });
     });   
   }
   onChangeCurrency = (event) => {
@@ -49,7 +55,7 @@ export default class App extends React.Component {
           <Field name="Особенности" value={this.state.item.name} />
           <Field
             name="Валюта"
-            value={[this.state.currentPrice, ' ', this.state.currentCurrency]}
+            value={[parseFloat(this.state.currentPrice).toFixed(2), ' ', this.state.currentCurrency]}
           >
             <Select currencies={this.state.currencies} onChange={this.onChangeCurrency} />
           </Field>
