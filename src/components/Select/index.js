@@ -1,4 +1,5 @@
 import React from 'react';
+import './style.css';
 
 export default class Select extends React.Component {
 	constructor(props) {
@@ -33,8 +34,10 @@ export default class Select extends React.Component {
 	}
 	render() {
 		return(
-			<select onChange={this.props.onChange} name="currencies">
-				{this.state.currencyOptions !== null && (this.state.currencyOptions.map(item => item))} 
+			<select onChange={this.props.onChange} name="currencies" className="currencies" value={this.props.value}>
+				{
+					this.state.currencyOptions !== null && (this.state.currencyOptions.map(item => item))
+				} 
 			</select>
 		);
 	}

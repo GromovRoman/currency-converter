@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 function getItemData() {
-    return  axios.get('https://api.myjson.com/bins/9ru57')
+    return  axios.get('https://api.myjson.com/bins/hxkan')
             .then(function (response) {
                 return response.data;
             });

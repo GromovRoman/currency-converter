@@ -1,4 +1,5 @@
 import React from 'react';
+import './style.css';
 
 export default class Field extends React.Component {
 	render() {
@@ -6,9 +7,11 @@ export default class Field extends React.Component {
 			<>
 				<dl className='field'>
 					<dt className='field__key'>{this.props.name}</dt>
-					<dd className='field__data'>{this.props.value}</dd>
+					<dd className='field__data'>
+						{this.props.value}
+						{this.props.children}
+					</dd>
 				</dl>
-				{this.props.children}
 			</>
 		);
 	}

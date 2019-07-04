@@ -1,0 +1,18 @@
+.field {
+    display: table-row;
+    text-align: left;
+    font-size: 22px;
+}
+.field__key,
+.field__data {
+    display: table-cell;
+}
+.field__key {
+    padding: 0 25px 20px 0;
+    color: rgb(255, 166, 0);
+    font-weight: 500;
+}
+.field__data {
+    color: rgb(0, 197, 0);
+    font-weight: 300;
+}

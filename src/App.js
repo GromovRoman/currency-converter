@@ -26,12 +26,11 @@ export default class App extends React.Component {
                               Name: 'Российский рубль', 
                               Value: 1
                             };
-
       this.setState({
         item: itemData,
         currencies: currencyData,
         currentPrice: itemData.price,
-        currentCurrency: itemData.curency
+        currentCurrency: itemData.currency
       });
     });   
   }
@@ -57,7 +56,10 @@ export default class App extends React.Component {
             name="Валюта"
             value={[parseFloat(this.state.currentPrice).toFixed(2), ' ', this.state.currentCurrency]}
           >
-            <Select currencies={this.state.currencies} onChange={this.onChangeCurrency} />
+            <Select currencies={this.state.currencies} 
+                    onChange={this.onChangeCurrency} 
+                    value={this.state.currentCurrency}
+            />
           </Field>
         </Widget>
       </div>
