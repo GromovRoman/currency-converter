@@ -13,21 +13,18 @@ export default class Item extends React.Component {
         };
     }
     componentDidMount() {
-        getCurencyData()
-        .then(curencyData => {
-            this.setState({
-                curency: curencyData,
-            });
-        });
-
-        getItemData()
-        .then(itemData => {
+        Promise.all([
+            getItemData(),
+            getCurencyData(),
+        ])
+        .then(([itemData, curencyData]) => {
             this.setState({
                 item: itemData,
+                curency: curencyData,
                 currentPrice: itemData.price,
                 currentCurency: itemData.curency
             });
-        });    
+        });   
     }
     changeCurency = (event) => {
         let recalculateСurrentPrices = this.state.item.price / this.state.curency[event.target.value].Value
@@ -41,7 +38,7 @@ export default class Item extends React.Component {
 
         if(this.state.curency !== null) {
             let curencyKeys = Object.keys(this.state.curency);
-            
+
             curencyKeys.forEach(key => {
                 options.push(
                     <option value={this.state.curency[key].CharCode} key={key}>
