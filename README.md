@@ -12,6 +12,10 @@
 
 - React
 - create-react-app
+
+
+#### Результат:
+
 - [JSON](https://api.myjson.com/bins/hxkan)
 - [Конвертер](https://9wwxs.codesandbox.io/)
 
