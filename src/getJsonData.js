@@ -7,11 +7,11 @@ function getItemData() {
             });
 }
 
-function getCurencyData() {
+function getCurrencyData() {
     return  axios.get('https://www.cbr-xml-daily.ru/daily_json.js')
             .then(function (response) {
                 return response.data.Valute;
             });
 }
 
-export {getItemData, getCurencyData}
+export {getItemData, getCurrencyData}

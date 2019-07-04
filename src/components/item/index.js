@@ -1,48 +1,48 @@
 import React from 'react';
 import './style.css';
-import { getItemData, getCurencyData } from '../../getJsonData';
+import { getItemData, getCurrencyData } from '../../getJsonData';
 
 export default class Item extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             item: null,
-            curency: null,
+            currency: null,
             currentPrice: null,
-            currentCurency: null,
+            currentCurrency: null,
         };
     }
     componentDidMount() {
         Promise.all([
             getItemData(),
-            getCurencyData(),
+            getCurrencyData(),
         ])
-        .then(([itemData, curencyData]) => {
+        .then(([itemData, currencyData]) => {
             this.setState({
                 item: itemData,
-                curency: curencyData,
+                currency: currencyData,
                 currentPrice: itemData.price,
-                currentCurency: itemData.curency
+                currentCurrency: itemData.currency
             });
         });   
     }
-    changeCurency = (event) => {
-        let recalculateСurrentPrices = this.state.item.price / this.state.curency[event.target.value].Value
+    changeCurrency = (event) => {
+        let recalculateСurrentPrices = this.state.item.price / this.state.currency[event.target.value].Value
         this.setState({
             currentPrice: recalculateСurrentPrices,
-            currentCurency: event.target.value,
+            currentCurrency: event.target.value,
         });
     }
     render(){
         let options = [];
 
-        if(this.state.curency !== null) {
-            let curencyKeys = Object.keys(this.state.curency);
+        if(this.state.currency !== null) {
+            let currencyKeys = Object.keys(this.state.currency);
 
-            curencyKeys.forEach(key => {
+            currencyKeys.forEach(key => {
                 options.push(
-                    <option value={this.state.curency[key].CharCode} key={key}>
-                        {this.state.curency[key].Name}
+                    <option value={this.state.currency[key].CharCode} key={key}>
+                        {this.state.currency[key].Name}
                     </option>
                 );
             });
@@ -71,10 +71,10 @@ export default class Item extends React.Component {
                         <li className='item__row'>  
                             <dl className='item__fields'>
                                 <dt className='item__key'>Цена</dt>
-                                <dd className='item__data'>{this.state.currentPrice} {this.state.currentCurency}</dd>
+                                <dd className='item__data'>{this.state.currentPrice} {this.state.currentCurrency}</dd>
                             </dl>
-                            { this.state.curency !== null ? (
-                                <select onChange={this.changeCurency} name="curency">
+                            { this.state.currency !== null ? (
+                                <select onChange={this.changeCurrency} name="currency">
                                     {options.map(item => item)} 
                                 </select>
                                 ) : (null)

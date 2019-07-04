@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
-import Item from './components/item/';
+import Widget from './components/Widget';
+import Field from './components/Field';
+import Select from './components/Select';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -11,7 +13,17 @@ export default class App extends React.Component {
   render() {
     return (
       <div className='App'>
-        <Item />
+        <Widget>
+                <Field name="Название" value={this.state.name} />
+                <Field name="Описание" value={this.state.description} />
+                <Field name="Особенности" value={this.state.name} />
+                <Field
+                    name="Валюта"
+                    value={(
+                        <Select values={currencyOptions} onChange={this.handleCurrencyChange} />
+                    )}
+                />
+        </Widget>
       </div>
     );
   }
