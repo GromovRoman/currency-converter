@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Widget from './components/Widget';
 import Field from './components/Field';
-import Select from './components/Select';
+import Currencies from './components/Currencies';
 import { getItemData, getCurrencyData } from './getJsonData';
 
 export default class App extends React.Component {
@@ -36,7 +36,7 @@ export default class App extends React.Component {
   }
   onChangeCurrency = (event) => {
     let currentCharCode = event.target.value,
-        newСurrentPrices = this.state.item.price / this.state.currencies[event.target.value].Value;
+        newСurrentPrices = this.state.item.price / this.state.currencies[currentCharCode].Value;
 
     this.setState({
         currentPrice: newСurrentPrices,
@@ -56,9 +56,9 @@ export default class App extends React.Component {
             name="Валюта"
             value={[parseFloat(this.state.currentPrice).toFixed(2), ' ', this.state.currentCurrency]}
           >
-            <Select currencies={this.state.currencies} 
-                    onChange={this.onChangeCurrency} 
-                    value={this.state.currentCurrency}
+            <Currencies options={this.state.currencies} 
+                        onChange={this.onChangeCurrency} 
+                        value={this.state.currentCurrency}
             />
           </Field>
         </Widget>

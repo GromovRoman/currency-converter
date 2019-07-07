@@ -6,9 +6,7 @@ export default class Widget extends React.Component {
 		return (
 			<div className="widget">
 				{
-					React.Children.map(this.props.children, child => (
-						child
-					))
+					this.props.children
 				}
 			</div>
 		);

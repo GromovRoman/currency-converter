@@ -1,23 +1,23 @@
 import React from 'react';
 import './style.css';
 
-export default class Select extends React.Component {
+export default class Currencies extends React.Component {
 	constructor(props) {
     super(props);
     this.state = {
 			currencyOptions: null,
     };
   }
-	setOptions() {
-		let currencyOptions = [];
+  mapCurrenciesToOptions() {
+	let currencyOptions = [];
 
-    if(this.props.currencies !== null) {
-      let currencyKeys = Object.keys(this.props.currencies);
+    if(this.props.options !== null) {
+      let currencyKeys = Object.keys(this.props.options);
 
       currencyKeys.forEach(key => {
         currencyOptions.push(
-          <option value={this.props.currencies[key].CharCode} key={key}>
-            {this.props.currencies[key].Name}
+          <option value={this.props.options[key].CharCode} key={key}>
+            {this.props.options[key].Name}
           </option>
         );
       });
@@ -28,8 +28,8 @@ export default class Select extends React.Component {
 	componentDidMount() {
 		this.setState(state => {
 			return {
-							currencyOptions: this.setOptions(),
-						}
+				currencyOptions: this.mapCurrenciesToOptions(),
+			}
 		});
 	}
 	render() {
